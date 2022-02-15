@@ -1,16 +1,30 @@
 package com.revature;
 
 import java.text.DecimalFormat;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String s = actualMemorySize("900GB");
-        System.out.println(s);
+        Scanner scanner = new Scanner(System.in);
+        boolean run = true;
+        while (run) {
+            try {
+                System.out.println("How much memory?");
+                System.out.println("Format: #GB OR #MB (decimals OK)");
+                String s = scanner.nextLine();
+                s = actualMemorySize(s);
+                System.out.println(s);
+                run = false;
+            } catch (Exception e) {
+                System.out.println("Incorrect format");
+            }
+        }
+        scanner.close();
     }
 
     private static String actualMemorySize(String size) {
-        double value = Double.valueOf(size.substring(0, size.length() - 2));
-        if (size.substring(size.length() - 2).toUpperCase().equals("MB")) {
+        double value = Double.parseDouble(size.substring(0, size.length() - 2));
+        if (size.substring(size.length() - 2).equalsIgnoreCase("MB")) {
             value /= 1000;
         }
         value *= .93;
