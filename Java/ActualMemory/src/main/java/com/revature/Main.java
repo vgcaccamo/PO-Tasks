@@ -24,7 +24,11 @@ public class Main {
 
     private static String actualMemorySize(String size) {
         double value = Double.parseDouble(size.substring(0, size.length() - 2));
-        if (size.substring(size.length() - 2).equalsIgnoreCase("MB")) {
+        String units = size.substring(size.length() - 2);
+        if (!units.equalsIgnoreCase("MB") && !units.equalsIgnoreCase("GB")) {
+            throw new NumberFormatException();
+        }
+        if (units.equalsIgnoreCase("MB")) {
             value /= 1000;
         }
         value *= .93;
