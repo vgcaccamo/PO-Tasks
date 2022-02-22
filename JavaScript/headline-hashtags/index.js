@@ -9,5 +9,5 @@ document.getElementById("form").addEventListener("submit", (e) => {
     hashString += "#" + word + " ";
   }
 
-  document.getElementById("hashtags").innerText = hashString.trim();;
+  document.getElementById("hashtags").innerText = hashString.trim();
 });
